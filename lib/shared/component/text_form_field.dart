@@ -4,6 +4,7 @@ class TextFormFields extends StatelessWidget {
   String? hintTex;
   TextInputType? textInputType;
   bool isVisible;
+  TextEditingController? controllerName;
 
   String? messageValidator;
   String? regX;
@@ -11,13 +12,15 @@ class TextFormFields extends StatelessWidget {
       {required this.hintTex,
       required this.textInputType,
       required this.isVisible,
-      required this.messageValidator,
+       this.messageValidator,
+        this.controllerName,
       this.regX});
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      controller:controllerName ,
       validator: (text) {
-        if (text!.trim() == null) {
+        if (text!.trim().isEmpty) {
           return messageValidator;
         }
         final bool emailValid = RegExp(
