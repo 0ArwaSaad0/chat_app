@@ -1,16 +1,11 @@
 import 'package:flutter/material.dart';
 
 import 'layout/home_layout.dart';
-import 'screens/create_account/create_account_view.dart';
+import 'screens/create_account/create_account.dart';
 import 'shared/styles/my_theme.dart';
-import 'package:firebase_core/firebase_core.dart';
-import 'firebase_options.dart';
 
-void main() async {
-  WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp(
-    options: DefaultFirebaseOptions.currentPlatform,
-  );
+
+void main() {
   runApp(MyApp());
 }
 
@@ -23,11 +18,11 @@ class MyApp extends StatelessWidget {
       initialRoute: CreateAccounts.routeName,
       routes: {
         HomeLayout.routeName: (c) => HomeLayout(),
-        CreateAccounts.routeName: (c) => CreateAccounts(),
+        CreateAccounts.routeName:(c)=>CreateAccounts(),
       },
       theme: MyThemeData.lightTheme,
       darkTheme: MyThemeData.darkTheme,
-      themeMode: ThemeMode.light,
+      themeMode:ThemeMode.light ,
     );
   }
 }
