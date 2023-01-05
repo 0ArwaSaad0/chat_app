@@ -1,3 +1,4 @@
+import 'package:chat/screens/loin_screen/login_view.dart';
 import 'package:flutter/material.dart';
 
 import 'layout/home_layout.dart';
@@ -20,10 +21,11 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Chat_app',
       debugShowCheckedModeBanner: false,
-      initialRoute: CreateAccounts.routeName,
+      initialRoute: LoginViewScreen.routeName,
       routes: {
         HomeLayout.routeName: (c) => HomeLayout(),
         CreateAccounts.routeName: (c) => CreateAccounts(),
+        LoginViewScreen.routeName:(c)=>LoginViewScreen(),
       },
       theme: MyThemeData.lightTheme,
       darkTheme: MyThemeData.darkTheme,

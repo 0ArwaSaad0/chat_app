@@ -107,7 +107,7 @@ class _CreateAccountsState
                       ),
                       ElevatedButton(
                           onPressed: () {
-                            CreateAccount();
+                            ValidateForm();
                           },
                           child: Text('Create New Account'))
                     ],
@@ -121,7 +121,7 @@ class _CreateAccountsState
     );
   }
 
-  CreateAccount() async {
+  ValidateForm() async {
     if (CreateAccounts.formKey.currentState!.validate()) {
       viewModel.CreateAccountWihFirebaseAuth(
           email: emailController.text, password: passwordController.text);
