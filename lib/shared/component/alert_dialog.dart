@@ -22,6 +22,7 @@ ShowLoading(context, String message) {
 
 HideLoading(context) {
   Navigator.pop(context);
+
 }
 
 ShowMessage(

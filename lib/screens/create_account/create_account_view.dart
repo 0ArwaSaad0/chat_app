@@ -1,21 +1,42 @@
+import 'package:chat/base.dart';
+import 'package:chat/screens/create_account/create_account_navigator.dart';
 import 'package:chat/screens/create_account/create_account_viewModel.dart';
 import 'package:chat/shared/component/text_form_field.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-class CreateAccounts extends StatelessWidget {
+class CreateAccounts extends StatefulWidget {
   static const String routeName = 'create_account';
   static GlobalKey<FormState> formKey = GlobalKey();
+
+  @override
+  State<CreateAccounts> createState() => _CreateAccountsState();
+}
+
+class _CreateAccountsState
+    extends BaseView<CreateAccounts, CreateAccountViewModel>
+    implements CreateAccountNavigator {
   TextEditingController emailController = TextEditingController();
+
   TextEditingController passwordController = TextEditingController();
+
   TextEditingController firstNameController = TextEditingController();
+
   TextEditingController secendNameController = TextEditingController();
-  CreateAccountViewModel accountViewModel = CreateAccountViewModel();
+
+  // CreateAccountViewModel accountViewModel = CreateAccountViewModel();
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    viewModel.navigator = this;
+  }
 
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
-      create: (BuildContext context) => accountViewModel,
+      create: (BuildContext context) => viewModel,
       child: Stack(
         children: [
           Image.asset(
@@ -38,7 +59,7 @@ class CreateAccounts extends StatelessWidget {
                 margin: EdgeInsets.symmetric(
                     vertical: MediaQuery.of(context).size.height * .21),
                 child: Form(
-                  key: formKey,
+                  key: CreateAccounts.formKey,
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -101,9 +122,14 @@ class CreateAccounts extends StatelessWidget {
   }
 
   CreateAccount() async {
-    if (formKey.currentState!.validate()) {
-      accountViewModel.CreateAccountWihFirebaseAuth(
+    if (CreateAccounts.formKey.currentState!.validate()) {
+      viewModel.CreateAccountWihFirebaseAuth(
           email: emailController.text, password: passwordController.text);
     }
+  }
+
+  @override
+  CreateAccountViewModel initViewModel() {
+    return CreateAccountViewModel();
   }
 }
